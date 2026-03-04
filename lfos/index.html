@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="MUS 244 interactive module with guided tutorial, quiz mode, and Canvas deliverable."
+    />
+    <title>MUS 244 Module</title>
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <script src="./topic.js" defer></script>
+    <script src="../shared/app.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <a class="back-link" href="../index.html">&larr; All modules</a>
+
+      <header class="hero">
+        <p class="eyebrow">MUS 244 Week 5</p>
+        <h1 id="topicTitle">Module Title</h1>
+        <p id="topicIntro"></p>
+        <div class="meta">
+          <span id="topicDifficulty"></span>
+          <span id="topicTime"></span>
+        </div>
+        <div class="link-row" id="topicResource"></div>
+      </header>
+
+      <section class="stats" id="stats"></section>
+
+      <nav class="mode-switch" aria-label="Learning mode selector">
+        <button class="mode-btn is-active" data-mode="guided" type="button">Guided Tutorial</button>
+        <button class="mode-btn" data-mode="quiz" type="button">Quiz Mode</button>
+        <button class="mode-btn" data-mode="deliverable" type="button">Canvas Deliverable</button>
+      </nav>
+
+      <section class="panel is-active" id="guidedPanel" aria-live="polite">
+        <div class="panel-head">
+          <h2>Guided Tutorial</h2>
+          <p id="guidedStepCounter"></p>
+          <div class="progress-track"><div class="progress-fill" id="guidedProgressBar"></div></div>
+          <p class="progress-text" id="guidedProgressText"></p>
+        </div>
+
+        <article class="card">
+          <h3 id="guidedTitle"></h3>
+          <p id="guidedBody"></p>
+          <ul id="guidedPoints"></ul>
+
+          <div class="checkpoint">
+            <p id="checkpointPrompt"></p>
+            <div class="option-grid" id="checkpointOptions"></div>
+            <p class="feedback" id="checkpointFeedback"></p>
+          </div>
+        </article>
+
+        <div class="actions">
+          <button class="btn-ghost" id="prevStepBtn" type="button">Previous</button>
+          <button class="btn" id="nextStepBtn" type="button">Next</button>
+        </div>
+      </section>
+
+      <section class="panel" id="quizPanel" aria-live="polite">
+        <div class="panel-head">
+          <h2>Quiz Mode</h2>
+          <p id="quizStatus"></p>
+        </div>
+
+        <article class="card">
+          <h3 id="quizPrompt"></h3>
+          <div class="option-grid" id="quizOptions"></div>
+          <p class="feedback" id="quizFeedback"></p>
+
+          <div class="quiz-controls">
+            <button class="btn" id="nextQuestionBtn" type="button">Next Question</button>
+            <button class="btn-ghost" id="restartQuizBtn" type="button">Restart Quiz</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel" id="deliverablePanel" aria-live="polite">
+        <div class="panel-head">
+          <h2>Canvas Deliverable</h2>
+          <p>Fill in your own reflections, then generate and copy the final text.</p>
+        </div>
+
+        <div class="deliverable-form">
+          <div class="field">
+            <label for="studentName">Your name</label>
+            <input id="studentName" type="text" placeholder="Student name" />
+          </div>
+
+          <div class="field">
+            <label for="studentSection">Section / class time</label>
+            <input id="studentSection" type="text" placeholder="Example: Tue 1:30 PM" />
+          </div>
+
+          <div class="field">
+            <label for="studentTerms">3 key terms you can explain now</label>
+            <input id="studentTerms" type="text" placeholder="Example: LFO, cutoff, sustain" />
+          </div>
+
+          <div class="field">
+            <label for="studentWin">One thing you understand better now</label>
+            <textarea id="studentWin" placeholder="1-2 sentences"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="studentQuestion">One thing you still need help with</label>
+            <textarea id="studentQuestion" placeholder="Write one question"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="studentNext">What you will practice next</label>
+            <textarea id="studentNext" placeholder="Short next step"></textarea>
+          </div>
+
+          <div class="deliverable-controls">
+            <button class="btn" id="generateDeliverableBtn" type="button">Generate Canvas Text</button>
+            <button class="btn-ghost" id="copyDeliverableBtn" type="button">Copy Text</button>
+          </div>
+
+          <div class="field">
+            <label for="deliverableOutput">Final text</label>
+            <textarea id="deliverableOutput" class="output-box" readonly></textarea>
+          </div>
+
+          <p class="feedback" id="deliverableStatus"></p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
