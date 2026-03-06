@@ -5,105 +5,494 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="MUS 244 Acoustics and Synthesis mini webapps with guided tutorial, quiz mode, and Canvas deliverables."
+      content="Directory for the webapps in this repository. Launch each module and review key details from one page."
     />
-    <title>MUS 244 Learning Apps Hub</title>
-    <link rel="stylesheet" href="./shared/styles.css" />
+    <title>Misc Tech Webapps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f1e9;
+        --bg-secondary: #f0ece2;
+        --surface: rgba(255, 255, 255, 0.78);
+        --surface-strong: rgba(255, 255, 255, 0.92);
+        --ink: #192431;
+        --muted: #516273;
+        --accent: #0f766e;
+        --accent-strong: #0b5f58;
+        --warm: #c66a1d;
+        --border: rgba(25, 36, 49, 0.16);
+        --shadow: 0 18px 48px rgba(27, 34, 45, 0.14);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #101820;
+          --bg-secondary: #111b25;
+          --surface: rgba(20, 31, 43, 0.7);
+          --surface-strong: rgba(24, 37, 50, 0.9);
+          --ink: #eaf2fb;
+          --muted: #adbdce;
+          --accent: #42b6a9;
+          --accent-strong: #72d5c2;
+          --warm: #f2a357;
+          --border: rgba(234, 242, 251, 0.16);
+          --shadow: 0 22px 64px rgba(0, 0, 0, 0.42);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        background: radial-gradient(circle at 10% 7%, rgba(15, 118, 110, 0.18), transparent 45%),
+          radial-gradient(circle at 95% 12%, rgba(198, 106, 29, 0.16), transparent 40%),
+          linear-gradient(170deg, var(--bg), var(--bg-secondary));
+        color: var(--ink);
+        font-family: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      .page {
+        width: min(1100px, 100% - 2rem);
+        margin: 0 auto;
+        padding: clamp(1.1rem, 3vw, 2rem) 0 2.5rem;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, rgba(15, 118, 110, 0.16), rgba(198, 106, 29, 0.08)), var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 26px;
+        box-shadow: var(--shadow);
+        padding: clamp(1rem, 2.8vw, 2.2rem);
+        backdrop-filter: blur(10px);
+      }
+
+      .eyebrow {
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .hero h1 {
+        margin: 0.3rem 0 0.5rem;
+        font-family: "Fraunces", Georgia, serif;
+        font-size: clamp(1.85rem, 4.5vw, 3rem);
+        line-height: 1.06;
+      }
+
+      .hero-copy {
+        margin: 0;
+        max-width: 64ch;
+        color: var(--muted);
+      }
+
+      .hero-meta {
+        margin-top: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+        gap: 0.6rem;
+      }
+
+      .metric {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--surface-strong);
+        padding: 0.65rem 0.8rem;
+      }
+
+      .metric-label {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .metric strong {
+        display: block;
+        margin-top: 0.15rem;
+        font-size: 1.05rem;
+      }
+
+      .hero-actions {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background: linear-gradient(120deg, var(--accent-strong), var(--accent));
+      }
+
+      .btn-ghost {
+        color: var(--ink);
+        border: 1px solid var(--border);
+        background: var(--surface-strong);
+      }
+
+      .section-head {
+        margin-top: 1.6rem;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-family: "Fraunces", Georgia, serif;
+        font-size: clamp(1.35rem, 3vw, 1.9rem);
+      }
+
+      .section-head p {
+        margin: 0.3rem 0 0;
+        color: var(--muted);
+      }
+
+      .app-grid {
+        margin-top: 0.85rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .app-card {
+        display: grid;
+        gap: 0.4rem;
+        min-height: 100%;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 1rem;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 14px 24px rgba(12, 22, 34, 0.08);
+        transition: transform 170ms ease, box-shadow 170ms ease, border-color 170ms ease;
+        animation: rise 420ms ease both;
+        animation-delay: var(--delay, 0ms);
+      }
+
+      .app-card:hover,
+      .app-card:focus-visible {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 32px rgba(12, 22, 34, 0.15);
+        border-color: rgba(15, 118, 110, 0.45);
+      }
+
+      .app-card .slug {
+        margin: 0;
+        color: var(--accent-strong);
+        font-size: 0.78rem;
+        letter-spacing: 0.03em;
+      }
+
+      .app-card h3 {
+        margin: 0;
+        font-size: 1.08rem;
+      }
+
+      .app-card .intro {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .chip-list {
+        list-style: none;
+        margin: 0.2rem 0 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .chip-list li {
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface-strong);
+        padding: 0.2rem 0.58rem;
+        font-size: 0.76rem;
+      }
+
+      .resource {
+        margin: 0.25rem 0 0;
+        font-size: 0.83rem;
+        color: var(--warm);
+      }
+
+      .notes {
+        margin-top: 1.1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 0.7rem;
+      }
+
+      .note-card {
+        margin: 0;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: 16px;
+        padding: 0.9rem;
+      }
+
+      .note-card h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .note-card p {
+        margin: 0.35rem 0 0;
+        color: var(--muted);
+      }
+
+      @media (max-width: 700px) {
+        .page {
+          width: min(1100px, 100% - 1rem);
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
   </head>
   <body>
-    <main class="app">
+    <main class="page">
       <header class="hero">
-        <p class="eyebrow">MUS 244</p>
-        <h1>Acoustics and Synthesis Learning Hub</h1>
-        <p>
-          Mobile-first mini webapps for Week 5 concepts. Every module has two modes (Guided Tutorial + Quiz Mode)
-          and a Canvas-ready text deliverable students can copy and paste.
+        <p class="eyebrow">Repository Hub</p>
+        <h1>Misc Tech Webapps</h1>
+        <p class="hero-copy">
+          Launch each webapp from one place. Card details are loaded from each app's own <code>topic.js</code> so this page stays in sync.
         </p>
-        <div class="meta">
-          <span>Auto dark mode</span>
-          <span>Beginner-friendly</span>
-          <span>Game elements: XP, badges, streaks</span>
+        <div class="hero-meta">
+          <div class="metric">
+            <span class="metric-label">Apps Detected</span>
+            <strong id="appCount">0</strong>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Type</span>
+            <strong>Static HTML</strong>
+          </div>
+          <div class="metric">
+            <span class="metric-label">Shared Layer</span>
+            <strong><code>/shared</code></strong>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="./sound-waves/index.html">Start With Sound Waves</a>
+          <a class="btn btn-ghost" href="#apps">Browse All Apps</a>
         </div>
       </header>
 
-      <section class="hub-grid" aria-label="Learning modules">
-        <a class="hub-card" href="./sound-waves/index.html">
-          <h3>/sound-waves</h3>
-          <p>What sound is, amplitude vs frequency, periodic vs aperiodic, and hearing range review.</p>
-          <div class="chip-row">
-            <span>Acoustics</span>
-            <span>Guided + Quiz</span>
-            <span>12 min</span>
-          </div>
-        </a>
-
-        <a class="hub-card" href="./harmonics/index.html">
-          <h3>/harmonics</h3>
-          <p>Fundamental/partials, integer multiples, overtones, FFT, and additive synthesis framing.</p>
-          <div class="chip-row">
-            <span>Harmonic Series</span>
-            <span>Companion tool link</span>
-            <span>14 min</span>
-          </div>
-        </a>
-
-        <a class="hub-card" href="./synth/index.html">
-          <h3>/synth</h3>
-          <p>Synthesis vs sampling, subtractive signal flow, oscillator roles, and modulation overview.</p>
-          <div class="chip-row">
-            <span>Synthesis Core</span>
-            <span>Guided + Quiz</span>
-            <span>13 min</span>
-          </div>
-        </a>
-
-        <a class="hub-card" href="./filters/index.html">
-          <h3>/filters</h3>
-          <p>Low-pass/high-pass, cutoff and resonance, EQ families (bell, shelf, bandpass), practical cleanup moves.</p>
-          <div class="chip-row">
-            <span>EQ and Filters</span>
-            <span>Guided + Quiz</span>
-            <span>12 min</span>
-          </div>
-        </a>
-
-        <a class="hub-card" href="./lfos/index.html">
-          <h3>/lfos</h3>
-          <p>Low-frequency oscillators, modulation targets, rate/depth control, and patching workflow.</p>
-          <div class="chip-row">
-            <span>Modulation</span>
-            <span>Guided + Quiz</span>
-            <span>11 min</span>
-          </div>
-        </a>
-
-        <a class="hub-card" href="./adsr/index.html">
-          <h3>/adsr</h3>
-          <p>Attack, Decay, Sustain, Release behavior and how to apply envelopes to musical patch design.</p>
-          <div class="chip-row">
-            <span>Envelopes</span>
-            <span>Guided + Quiz</span>
-            <span>11 min</span>
-          </div>
-        </a>
+      <section class="section-head" id="apps">
+        <h2>All Webapps</h2>
+        <p id="loadStatus">Loading module metadata...</p>
       </section>
 
-      <section class="panel is-active hub-note">
-        <div class="panel-head">
-          <h2>Classroom Use Notes</h2>
-        </div>
-        <article class="card">
-          <p>Suggested student flow:</p>
-          <ol>
-            <li>Run Guided Tutorial first and clear all checkpoints.</li>
-            <li>Run Quiz Mode, then retry for a higher score if needed.</li>
-            <li>Open Canvas Deliverable, fill reflection fields, and copy the generated text.</li>
-          </ol>
-          <p>
-            These are plain static files, so hosting on GitHub Pages will work with no build step.
-          </p>
+      <section class="app-grid" data-app-grid aria-live="polite"></section>
+
+      <section class="notes">
+        <article class="note-card">
+          <h3>Local Use</h3>
+          <p>Serve this repo as static files and open this page to launch each module.</p>
+        </article>
+        <article class="note-card">
+          <h3>Module Layout</h3>
+          <p>Each webapp lives in its own folder with an <code>index.html</code> and a <code>topic.js</code>.</p>
         </article>
       </section>
     </main>
+
+    <template id="appCardTemplate">
+      <a class="app-card" href="#">
+        <p class="slug"></p>
+        <h3></h3>
+        <p class="intro"></p>
+        <ul class="chip-list"></ul>
+        <p class="resource" hidden></p>
+      </a>
+    </template>
+
+    <script>
+      const APP_SLUGS = ["sound-waves", "harmonics", "synth", "filters", "lfos", "adsr"];
+
+      const appGrid = document.querySelector("[data-app-grid]");
+      const appCount = document.getElementById("appCount");
+      const loadStatus = document.getElementById("loadStatus");
+      const appCardTemplate = document.getElementById("appCardTemplate");
+
+      function titleFromSlug(slug) {
+        return slug
+          .split("-")
+          .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+          .join(" ");
+      }
+
+      function cleanText(value, fallback) {
+        if (typeof value !== "string") {
+          return fallback;
+        }
+        const trimmed = value.trim();
+        return trimmed || fallback;
+      }
+
+      function normalizeConfig(raw, slug) {
+        const estimatedMinutes = Number.isFinite(raw?.estimatedMinutes) ? raw.estimatedMinutes : null;
+        const keyTerms = Array.isArray(raw?.keyTerms)
+          ? raw.keyTerms.filter((term) => typeof term === "string" && term.trim().length > 0)
+          : [];
+
+        return {
+          slug,
+          title: cleanText(raw?.title, titleFromSlug(slug)),
+          intro: cleanText(raw?.intro, "Open this webapp to start."),
+          difficulty: cleanText(raw?.difficulty, "Module"),
+          estimatedMinutes,
+          keyTerms,
+          resourceLabel: cleanText(raw?.resource?.label, ""),
+        };
+      }
+
+      function fallbackConfig(slug) {
+        return {
+          slug,
+          title: titleFromSlug(slug),
+          intro: "Open this webapp to start.",
+          difficulty: "Module",
+          estimatedMinutes: null,
+          keyTerms: [],
+          resourceLabel: "",
+        };
+      }
+
+      function createChip(text) {
+        const chip = document.createElement("li");
+        chip.textContent = text;
+        return chip;
+      }
+
+      function loadTopicConfig(slug) {
+        return new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          const timeout = window.setTimeout(() => {
+            cleanup();
+            reject(new Error(`Timed out loading ${slug}`));
+          }, 4500);
+
+          function cleanup() {
+            window.clearTimeout(timeout);
+            script.remove();
+            delete window.LEARN_APP_CONFIG;
+          }
+
+          script.src = `./${slug}/topic.js`;
+          script.async = true;
+          script.onload = () => {
+            const raw = window.LEARN_APP_CONFIG;
+            if (!raw || typeof raw !== "object") {
+              cleanup();
+              reject(new Error(`Missing LEARN_APP_CONFIG in ${slug}`));
+              return;
+            }
+            const normalized = normalizeConfig(raw, slug);
+            cleanup();
+            resolve(normalized);
+          };
+
+          script.onerror = () => {
+            cleanup();
+            reject(new Error(`Failed to load ${slug}/topic.js`));
+          };
+
+          document.head.appendChild(script);
+        });
+      }
+
+      function renderCard(config, index) {
+        const card = appCardTemplate.content.firstElementChild.cloneNode(true);
+        const chipList = card.querySelector(".chip-list");
+        const resource = card.querySelector(".resource");
+
+        card.href = `./${config.slug}/index.html`;
+        card.style.setProperty("--delay", `${index * 60}ms`);
+        card.querySelector(".slug").textContent = `/${config.slug}`;
+        card.querySelector("h3").textContent = config.title;
+        card.querySelector(".intro").textContent = config.intro;
+
+        chipList.appendChild(createChip(config.difficulty));
+        if (Number.isFinite(config.estimatedMinutes)) {
+          chipList.appendChild(createChip(`${config.estimatedMinutes} min`));
+        }
+        config.keyTerms.slice(0, 2).forEach((term) => chipList.appendChild(createChip(term)));
+
+        if (config.resourceLabel) {
+          resource.hidden = false;
+          resource.textContent = `Resource: ${config.resourceLabel}`;
+        }
+
+        return card;
+      }
+
+      async function init() {
+        const cards = [];
+        for (let index = 0; index < APP_SLUGS.length; index += 1) {
+          const slug = APP_SLUGS[index];
+          let config;
+          try {
+            config = await loadTopicConfig(slug);
+          } catch (error) {
+            config = fallbackConfig(slug);
+          }
+          cards.push(renderCard(config, index));
+        }
+
+        appGrid.replaceChildren(...cards);
+        appCount.textContent = String(cards.length);
+        loadStatus.textContent = cards.length
+          ? "Select any card to open that module."
+          : "No app folders were found.";
+      }
+
+      init();
+    </script>
   </body>
 </html>
